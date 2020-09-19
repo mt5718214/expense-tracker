@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const Record = require('./models/record')
+const Category = require('./models/category')
 
 const app = express()
 
@@ -19,6 +21,7 @@ db.once('open', () => {
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Record.find()
@@ -26,7 +29,22 @@ app.get('/', (req, res) => {
     .then(records => {
       res.render('index', { records })
     })
+})
 
+app.get('/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/new', (req, res) => {
+  const { name, date, category, amount } = req.body
+  Category.findOne({ name: category })
+    .lean()
+    .then(categoryData => {
+      const icon = categoryData.icon
+      Record.create({ name, category, date, amount, icon })
+    })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 

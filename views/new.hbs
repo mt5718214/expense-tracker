@@ -1,0 +1,33 @@
+<form action="/new" method="POST">
+  <div>
+    <label for="name">名稱* :
+      <input type="text" name="name">
+    </label>
+  </div>
+
+  <div>
+    <label for="date">日期* :
+      <input type="date" name="date">
+    </label>
+  </div>
+
+  <div>
+    <label for="category">類別* :
+      <select name="category" id="category">
+        <option value="家居物業">家居物業</option>
+        <option value="交通出行">交通出行</option>
+        <option value="休閒娛樂">休閒娛樂</option>
+        <option value="餐飲食品">餐飲食品</option>
+        <option value="其他">其他</option>
+      </select>
+    </label>
+  </div>
+
+  <div>
+    <label for="amount">金額* :
+      <input type="number" name="amount" min="0">
+    </label>
+  </div>
+
+  <button type="submit">Create</button>
+</form>
