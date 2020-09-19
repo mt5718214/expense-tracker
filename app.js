@@ -1,5 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
+const Record = require('./models/record')
 
 const app = express()
 
@@ -15,8 +17,16 @@ db.once('open', () => {
   console.log('mongoose connected!')
 })
 
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
+
 app.get('/', (req, res) => {
-  res.send('This is Express app')
+  Record.find()
+    .lean()
+    .then(records => {
+      res.render('index', { records })
+    })
+
 })
 
 
