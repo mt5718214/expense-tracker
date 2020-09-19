@@ -1,6 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+/**
+ * 在後面加上()=> returns object with all (130+) helpers
+ * 只拿出 helpers 分類中的 comparison 物件
+ * 也可另外寫成 const comparison = helpers.comparison()
+ * 若要其他物件可在陣列中繼續添加 EX : (['a', 'b', 'c'])
+ */
+const helpers = require('handlebars-helpers')(['comparison'])
 const bodyParser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
@@ -33,6 +40,15 @@ app.get('/', (req, res) => {
 
 app.get('/new', (req, res) => {
   res.render('new')
+})
+
+app.get('/edit:id', (req, res) => {
+  const id = req.params.id
+  Record.findById(id)
+    .lean()
+    .then(record => {
+      res.render('edit', { record })
+    })
 })
 
 app.post('/new', (req, res) => {
