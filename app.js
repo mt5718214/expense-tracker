@@ -11,6 +11,7 @@ const helpers = require('handlebars-helpers')(['comparison'])
 const bodyParser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
+const record = require('./models/record')
 
 const app = express()
 
@@ -63,6 +64,26 @@ app.post('/new', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.post('/edit:id', (req, res) => {
+  const id = req.params.id
+  const { name, date, category, amount } = req.body
+  Category.findOne({ name: category })
+    .then(categoryData => {
+      const icon = categoryData.icon
+      Record.findById(id)
+        .then(record => {
+          record.name = name
+          record.date = date
+          record.category = category
+          record.amount = amount
+          record.icon = icon
+          return record.save()
+        })
+        .catch(error => console.log(error))
+    })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 app.listen(3000, () => {
   console.log('Express is running on http://localhost:3000')
