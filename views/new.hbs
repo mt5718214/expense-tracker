@@ -1,33 +1,37 @@
 <form action="/new" method="POST">
-  <div>
-    <label for="name">名稱* :
-      <input type="text" name="name">
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">名稱* :</span>
+    </div>
+    <input class="form-control" type="text" name="name">
   </div>
 
-  <div>
-    <label for="date">日期* :
-      <input type="date" name="date">
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">日期* :</span>
+    </div>
+    <input class="form-control" type="date" name="date">
   </div>
 
-  <div>
-    <label for="category">類別* :
-      <select name="category" id="category">
-        <option value="家居物業">家居物業</option>
-        <option value="交通出行">交通出行</option>
-        <option value="休閒娛樂">休閒娛樂</option>
-        <option value="餐飲食品">餐飲食品</option>
-        <option value="其他">其他</option>
-      </select>
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">類別* :</span>
+    </div>
+    <select class="custom-select" name="category" id="category">
+      <option value="家居物業">家居物業</option>
+      <option value="交通出行">交通出行</option>
+      <option value="休閒娛樂">休閒娛樂</option>
+      <option value="餐飲食品">餐飲食品</option>
+      <option value="其他">其他</option>
+    </select>
   </div>
 
-  <div>
-    <label for="amount">金額* :
-      <input type="number" name="amount" min="0">
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">金額* :</span>
+    </div>
+    <input class="form-control" type="number" name="amount" min="0">
   </div>
 
-  <button type="submit">Create</button>
+  <button class="btn btn-secondary" type="submit">新增</button>
 </form>
