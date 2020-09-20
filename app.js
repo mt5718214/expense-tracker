@@ -84,7 +84,17 @@ app.get('/edit:id', (req, res) => {
 })
 
 app.post('/new', (req, res) => {
-  const { name, date, category, amount } = req.body
+  let { name, date, category, amount } = req.body
+  if (!name.trim()) name = '未命名支出'
+  if (!amount) amount = 0
+  if (!date) {
+    const dateObj = new Date()
+    const year = dateObj.getFullYear()
+    const month = dateObj.getMonth() + 1
+    const day = dateObj.getDate()
+    date = `${year}-${month}-${day}`
+  }
+
   Category.findOne({ name: category })
     .lean()
     .then(categoryData => {
