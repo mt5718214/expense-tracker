@@ -14,6 +14,7 @@ const Record = require('./models/record')
 const Category = require('./models/category')
 
 const app = express()
+const PORT = process.env.PORT || 3000
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -135,6 +136,6 @@ app.post('/delete:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('Express is running on http://localhost:3000')
 })
