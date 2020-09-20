@@ -1,34 +1,38 @@
 <form action="/edit{{record._id}}" method="POST">
-  <div>
-    <label for="name">名稱* :
-      <input type="text" name="name" {{#if record}}value="{{record.name}}" {{/if}}>
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">名稱* :</span>
+    </div>
+    <input class="form-control" type="text" name="name" {{#if record}}value="{{record.name}}" {{/if}}>
   </div>
 
-  <div>
-    <label for="date">日期* :
-      <input type="date" name="date" {{#if record}}value="{{record.date}}" {{/if}}>
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">日期* :</span>
+    </div>
+    <input class="form-control" type="date" name="date" {{#if record}}value="{{record.date}}" {{/if}}>
   </div>
 
-  <div>
-    <label for="category">類別* :
-      <select name="category" id="category">
-        <option value="家居物業" {{#eq record.category "家居物業"}}selected{{/eq}}>家居物業</option>
-        <option value="交通出行" {{#eq record.category "交通出行"}}selected{{/eq}}>交通出行</option>
-        <option value="休閒娛樂" {{#eq record.category "休閒娛樂"}}selected{{/eq}}>休閒娛樂</option>
-        <option value="餐飲食品" {{#eq record.category "餐飲食品"}}selected{{/eq}}>餐飲食品</option>
-        <option value="其他" {{#eq record.category "其他"}}selected{{/eq}}>其他</option>
-      </select>
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">類別* :</span>
+    </div>
+    <select class="custom-select" name="category" id="category">
+      <option value="家居物業" {{#eq record.category "家居物業"}}selected{{/eq}}>家居物業</option>
+      <option value="交通出行" {{#eq record.category "交通出行"}}selected{{/eq}}>交通出行</option>
+      <option value="休閒娛樂" {{#eq record.category "休閒娛樂"}}selected{{/eq}}>休閒娛樂</option>
+      <option value="餐飲食品" {{#eq record.category "餐飲食品"}}selected{{/eq}}>餐飲食品</option>
+      <option value="其他" {{#eq record.category "其他"}}selected{{/eq}}>其他</option>
+    </select>
   </div>
 
-  <div>
-    <label for="amount">金額* :
-      <input type="number" name="amount" min="0" {{#if record}}value="{{record.amount}}" {{/if}}>
-    </label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">金額* :</span>
+    </div>
+    <input class="form-control" type="number" name="amount" min="0" {{#if record}}value="{{record.amount}}" {{/if}}>
   </div>
 
-  <button type="submit">Save</button>
-  <a href="/">back</a>
+  <button class="btn btn-success" type="submit">Save</button>
+  <a class="btn btn-primary" href="/">back</a>
 </form>
