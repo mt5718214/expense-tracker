@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
 const exphbs = require('express-handlebars')
 /**
  * 在後面加上()=> returns object with all (130+) helpers
@@ -14,7 +15,7 @@ const Category = require('./models/category')
 
 const app = express()
 
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 
