@@ -1,0 +1,28 @@
+.row {
+  width: 100%;
+}
+
+.totalAmount h2{
+  font-weight: 400;
+  color: brown;
+}
+
+.list-group-item h4 {
+  margin: 0;
+}
+
+.list-group-item .icon i {
+  color: aqua;
+}
+
+.list-group-item .info {
+  width: 100%;
+  margin: 0 0 0 10px;
+}
+
+.list-group-item .amount {
+  line-height: 52px;
+  font-size: 19px;
+  font-weight: 700;
+  color: cornflowerblue;
+}
