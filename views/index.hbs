@@ -7,6 +7,9 @@
     {{this.date}}
     {{this.amount}}
     <a href="/edit{{this._id}}">edit</a>
+    <form action="/delete{{this._id}}" method="POST" style="display: inline-block;">
+      <button type="submit">delete</button>
+    </form>
   </li>
   {{/each}}
 </ul>
