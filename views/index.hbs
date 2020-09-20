@@ -41,10 +41,12 @@
       <div class="d-flex align-items-center col-auto">
         <a class="btn btn-success" href="/edit{{this._id}}">edit</a>
 
-        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#exampleModal">delete</button>
+        <button class="btn btn-danger" type="button" data-toggle="modal"
+          data-target="#exampleModal{{this._id}}">delete</button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal{{this._id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -54,7 +56,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                確定要刪除嗎?
+                確定要刪除{{this.name}}嗎?
               </div>
               <div class="modal-footer">
                 <form action="/delete{{this._id}}" method="POST" style="display: inline-block;">
