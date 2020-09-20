@@ -1,4 +1,17 @@
-<a href="/new">Create</a>
+<form action="/search">
+  <div class="btn-group">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">
+      類別
+    </button>
+    <div class="dropdown-menu">
+      {{#each categoryArray}}
+      <button class="dropdown-item" name="filter" value="{{this}}">{{this}}</button>
+      {{/each}}
+    </div>
+  </div>
+</form>
+
 <h2>總金額: {{totalAmount}}</h2>
 <ul>
   {{#each records}}

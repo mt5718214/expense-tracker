@@ -11,7 +11,6 @@ const helpers = require('handlebars-helpers')(['comparison'])
 const bodyParser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
-const record = require('./models/record')
 
 const app = express()
 
@@ -34,15 +33,44 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Record.find()
     .lean()
+    .sort({ date: 'desc' })
     .then(records => {
       let totalAmount = 0
       records.forEach(record => totalAmount += record.amount)
-      res.render('index', { records, totalAmount })
+
+      Category.find()
+        .lean()
+        .then(categories => {
+          let categoryArray = []
+          categories.forEach(category => categoryArray.push(category.name))
+          return res.render('index', { records, totalAmount, categoryArray })
+        })
+        .catch(error => console.log(error))
     })
 })
 
 app.get('/new', (req, res) => {
   res.render('new')
+})
+
+app.get('/search', (req, res) => {
+  const category = req.query.filter
+  Record.find({ category })
+    .lean()
+    .then(records => {
+      let totalAmount = 0
+      records.forEach(record => totalAmount += record.amount)
+
+      Category.find()
+        .lean()
+        .then(categories => {
+          let categoryArray = []
+          categories.forEach(category => categoryArray.push(category.name))
+          return res.render('index', { records, totalAmount, categoryArray })
+        })
+        .catch(error => console.log(error))
+    })
+
 })
 
 app.get('/edit:id', (req, res) => {
