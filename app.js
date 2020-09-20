@@ -51,12 +51,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/new', (req, res) => {
-  const dateObj = new Date()
-  const year = dateObj.getFullYear()
-  const month = dateObj.getMonth() + 1
-  const day = dateObj.getDate()
-  const date = `${year}-${month}-${day}`
-  res.render('new', { date })
+  res.render('new')
 })
 
 app.get('/search', (req, res) => {
