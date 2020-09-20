@@ -1,4 +1,8 @@
-<form action="/search">
+<div class="totalAmount my-3">
+  <h2>總金額: {{totalAmount}}</h2>
+</div>
+
+<form action="/search" class="text-left mb-4">
   <div class="btn-group">
     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
       aria-expanded="false">
@@ -12,18 +16,59 @@
   </div>
 </form>
 
-<h2>總金額: {{totalAmount}}</h2>
-<ul>
+<ul class="list-group">
   {{#each records}}
-  <li>
-    <i class="{{this.icon}}"></i>
-    {{this.name}}
-    {{this.date}}
-    {{this.amount}}
-    <a href="/edit{{this._id}}">edit</a>
-    <form action="/delete{{this._id}}" method="POST" style="display: inline-block;">
-      <button type="submit">delete</button>
-    </form>
+  <li class="list-group-item d-flex">
+    <div class="row justify-content-between">
+      <div class="d-flex col-8 justify-content-between">
+        <div class="d-flex">
+
+          <div class="icon">
+            <i class="{{this.icon}} fa-2x"></i>
+          </div>
+
+          <div class="info text-left">
+            <h4>{{this.name}}</h4>
+            <small>{{this.date}}</small>
+          </div>
+        </div>
+
+        <div class="amount">
+          ${{this.amount}}
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center col-auto">
+        <a class="btn btn-success" href="/edit{{this._id}}">edit</a>
+
+        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#exampleModal">delete</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">警告</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                確定要刪除嗎?
+              </div>
+              <div class="modal-footer">
+                <form action="/delete{{this._id}}" method="POST" style="display: inline-block;">
+                  <button type="submit" class="btn btn-primary">Yes</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+
+    </div>
   </li>
   {{/each}}
 </ul>
