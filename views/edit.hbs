@@ -10,7 +10,8 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">日期* :</span>
     </div>
-    <input class="form-control" type="date" name="date" {{#if record}}value="{{record.date}}" {{/if}}>
+    <input class="form-control" type="date" name="date" {{#if record}}value="{{record.date}}" {{/if}}
+      max="{{record.date}}">
   </div>
 
   <div class="input-group mb-3">
