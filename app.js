@@ -1,7 +1,7 @@
 const express = require('express')
-const mongoose = require('mongoose')
+const PORT = process.env.PORT || 3000
 const routes = require('./routes')
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
+const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 /**
  * 在後面加上()=> returns object with all (130+) helpers
@@ -10,22 +10,9 @@ const exphbs = require('express-handlebars')
  * 若要其他物件可在陣列中繼續添加 EX : (['a', 'b', 'c'])
  */
 const helpers = require('handlebars-helpers')(['comparison'])
-const bodyParser = require('body-parser')
 
+require('./config/mongoose')
 const app = express()
-const PORT = process.env.PORT || 3000
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongoose error')
-})
-
-db.once('open', () => {
-  console.log('mongoose connected!')
-})
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
