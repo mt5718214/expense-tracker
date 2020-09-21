@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 3000
 const routes = require('./routes')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 /**
  * 在後面加上()=> returns object with all (130+) helpers
  * 只拿出 helpers 分類中的 comparison 物件
@@ -17,6 +18,7 @@ const app = express()
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(routes)
 

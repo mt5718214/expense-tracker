@@ -59,7 +59,7 @@
                 確定要刪除{{this.name}}嗎?
               </div>
               <div class="modal-footer">
-                <form action="/record/delete{{this._id}}" method="POST" style="display: inline-block;">
+                <form action="/record/delete{{this._id}}?_method=DELETE" method="POST" style="display: inline-block;">
                   <button type="submit" class="btn btn-primary">Yes</button>
                 </form>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>

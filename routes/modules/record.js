@@ -42,7 +42,7 @@ router.post('/new', (req, res) => {
 })
 
 //編輯資料
-router.post('/edit:id', (req, res) => {
+router.put('/edit:id', (req, res) => {
   const id = req.params.id
   const { name, date, category, amount } = req.body
   Category.findOne({ name: category })
@@ -64,7 +64,7 @@ router.post('/edit:id', (req, res) => {
 })
 
 //刪除資料
-router.post('/delete:id', (req, res) => {
+router.delete('/delete:id', (req, res) => {
   const id = req.params.id
   Record.findById(id)
     .then(record => record.remove())
