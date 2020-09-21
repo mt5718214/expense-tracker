@@ -28,7 +28,7 @@ router.post('/new', (req, res) => {
     const year = dateObj.getFullYear()
     const month = dateObj.getMonth() + 1
     const day = dateObj.getDate()
-    date = `${year}-${month}-${day}`
+    date = `${year}-0${month}-${day}`
   }
 
   Category.findOne({ name: category })
