@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 3000
 const routes = require('./routes')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
+const session = require('express-session')
 const methodOverride = require('method-override')
 /**
  * 在後面加上()=> returns object with all (130+) helpers
@@ -17,6 +18,12 @@ const app = express()
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+app.use(session({
+  secret: 'ThisIsMySessionSecret',
+  resave: false,
+  saveUninitialized: true
+}))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
