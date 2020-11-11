@@ -4,6 +4,7 @@ const routes = require('./routes')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 const methodOverride = require('method-override')
 /**
  * 在後面加上()=> returns object with all (130+) helpers
@@ -24,6 +25,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+usePassport(app)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
