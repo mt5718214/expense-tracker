@@ -18,8 +18,19 @@
 <body class="bg-light">
   {{!-- Navigation bar --}}
   <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="/"><i class="fas fa-dollar-sign"></i> 老爸的記帳本</a>
-    <a class="btn btn-light" href="/record/new" role="button">新增支出</a>
+    <a class="navbar-brand" href="/">
+      <i class="fas fa-dollar-sign"></i>
+      {{#if isAuthenticated}}
+      {{user.name}}的記帳本
+      {{else}}
+      我的記帳本
+      {{/if}}
+    </a>
+    {{#if isAuthenticated}}
+    <a class="btn btn-light" href="/users/logout" role="button">登出</a>
+    {{else}}
+    <a class="btn btn-light" href="/users/login" role="button">登入</a>
+    {{/if}}
   </nav>
 
   <main>
