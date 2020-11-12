@@ -13,7 +13,7 @@ module.exports = app => {
       .then(user => {
         if (!user) return done(null, false)
         return bcrypt.compare(password, user.password).then(isMatch => {
-          if (isMatch) {
+          if (!isMatch) {
             return done(null, false)
           }
           return done(null, user)
