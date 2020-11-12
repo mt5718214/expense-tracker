@@ -21,6 +21,15 @@ const recordSchema = new Schema({
   icon: {
     type: String,
     required: true
+  },
+  merchant: {
+    type: String
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 

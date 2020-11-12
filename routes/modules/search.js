@@ -4,8 +4,9 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const category = req.query.filter
-  Record.find({ category })
+  Record.find({ category, userId })
     .lean()
     .then(records => {
       let totalAmount = 0
