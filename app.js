@@ -1,5 +1,4 @@
 const express = require('express')
-const PORT = process.env.PORT || 3000
 const routes = require('./routes')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
@@ -15,14 +14,19 @@ const methodOverride = require('method-override')
  */
 const helpers = require('handlebars-helpers')(['comparison'])
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 require('./config/mongoose')
 const app = express()
+const PORT = process.env.PORT
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(session({
-  secret: 'ThisIsMySessionSecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -41,5 +45,5 @@ app.use(express.static('public'))
 app.use(routes)
 
 app.listen(PORT, () => {
-  console.log('Express is running on http://localhost:3000')
+  console.log(`Express is running on http://localhost:${PORT}`)
 })
