@@ -15,6 +15,7 @@ router.get('/edit:id', (req, res) => {
   Record.findOne({ _id, userId })
     .lean()
     .then(record => {
+      record.date = record.date.toISOString().slice(0, 10)
       res.render('edit', { record })
     })
 })
@@ -25,18 +26,14 @@ router.post('/new', (req, res) => {
   let { name, date, category, amount, merchant } = req.body
   if (!name.trim()) name = '未命名支出'
   if (!amount) amount = 0
-  if (!date) {
-    const dateObj = new Date()
-    const year = dateObj.getFullYear()
-    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0')
-    const day = dateObj.getDate()
-    date = `${year}-${month}-${day}`
-  }
 
   Category.findOne({ name: category })
     .lean()
     .then(categoryData => {
       const icon = categoryData.icon
+      //日期為空則預設為今天
+      if (!date) return Record.create({ name, category, amount, icon, merchant, userId })
+      //日期不為空則依其日期設定
       Record.create({ name, category, date, amount, icon, merchant, userId })
     })
     .then(() => res.redirect('/'))
