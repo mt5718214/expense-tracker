@@ -28,6 +28,13 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">商家:</span>
+    </div>
+    <input type="text" class="form-control" name="merchant" {{#if record}}value="{{record.merchant}}" {{/if}}>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">金額* :</span>
     </div>
     <input class="form-control" type="number" name="amount" min="0" {{#if record}}value="{{record.amount}}" {{/if}}>
