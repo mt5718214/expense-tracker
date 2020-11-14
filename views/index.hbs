@@ -3,17 +3,21 @@
 </div>
 
 <form action="/search" class="text-left mb-4">
-  <div class="btn-group">
-    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">
-      類別
-    </button>
-    <div class="dropdown-menu">
-      {{#each categoryArray}}
-      <button class="dropdown-item" name="filter" value="{{this}}">{{this}}</button>
-      {{/each}}
-    </div>
-  </div>
+  <select name="category" class="btn btn-secondary">
+    <option value="">請選擇類別</option>
+    {{#each categoryArray}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+
+  <select name="month" class="btn btn-secondary">
+    <option value="">請選擇月份</option>
+    {{#each months}}
+    <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+
+  <button type="submit" class="btn btn-dark">篩選</button>
 </form>
 
 <ul class="list-group">

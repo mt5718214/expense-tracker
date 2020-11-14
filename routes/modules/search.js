@@ -2,22 +2,40 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const { generateMonth } = require('../../config/monthData')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
-  const category = req.query.filter
-  Record.find({ category, userId })
+  const category = req.query.category
+  const month = req.query.month
+  const today = new Date()
+  const year = today.getFullYear()
+  const filterDate = { userId }
+
+  if (category) {
+    filterDate.category = category
+  }
+
+  if (month) {
+    filterDate.date = { $gte: `${year}-${month}-1`, $lte: `${year}-${month}-31` }
+  }
+
+  Record.find(filterDate)
     .lean()
     .then(records => {
       let totalAmount = 0
-      records.forEach(record => totalAmount += record.amount)
+      records.forEach(record => {
+        totalAmount += record.amount
+        record.date = record.date.toISOString().slice(0, 10)
+      })
 
       Category.find()
         .lean()
         .then(categories => {
-          let categoryArray = []
+          const months = generateMonth()
+          const categoryArray = []
           categories.forEach(category => categoryArray.push(category.name))
-          return res.render('index', { records, totalAmount, categoryArray })
+          return res.render('index', { records, totalAmount, categoryArray, months, category, month })
         })
         .catch(error => console.log(error))
     })
