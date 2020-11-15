@@ -3,29 +3,27 @@
     {
       "name": "早餐",
       "category": "餐飲食品",
-      "date": "2020-09-18",
-      "amount": "100",
-      "icon": "fas fa-utensils"
+      "amount": 100,
+      "icon": "fas fa-utensils",
+      "merchant": "丹丹漢堡"
     },
     {
       "name": "車子保養費",
       "category": "其他",
-      "date": "2020-09-18",
-      "amount": "3000",
-      "icon": "fas fa-pen"
+      "amount": 3000,
+      "icon": "fas fa-pen",
+      "merchant": "福特原廠"
     },
     {
       "name": "手機月租費",
       "category": "其他",
-      "date": "2020-09-17",
-      "amount": "799",
+      "amount": 799,
       "icon": "fas fa-pen"
     },
     {
       "name": "機車油錢",
       "category": "交通出行",
-      "date": "2020-09-16",
-      "amount": "120",
+      "amount": 120,
       "icon": "fas fa-shuttle-van"
     }
   ]
