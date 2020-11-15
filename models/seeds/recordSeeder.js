@@ -26,7 +26,6 @@ db.once('open', () => {
       const userId = user._id
       return Promise.all(recordList.results.map(result => {
         result.userId = userId
-        console.log(result)
         Record.create(result)
       }))
     })
