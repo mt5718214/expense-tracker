@@ -1,11 +1,13 @@
-# 老爸的記帳本
+# 線上記帳本
 
 
 ## 功能
 
-- 可查看所有支出
-- 可以依照支出類別篩選特定資料
-- 可新增、刪除和修改任一筆支出
+- 使用者需註冊帳號才可使用本網站所提供之功能
+- 使用者可透過email或facebook註冊帳號
+- 使用者可查看所有支出
+- 使用者可以依照支出類別或月份篩選特定資料
+- 使用者可新增、刪除和修改任一筆支出
 
 ## 使用工具
 
@@ -16,8 +18,11 @@
 - Express-Handlebars
 - nodemon
 - body-parser
-- method-overrid
+- method-override
 - handlebars-helpers
+- passport
+- express-session
+- connect-flash
 
 ## 安裝
 
