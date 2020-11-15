@@ -6,10 +6,13 @@ const categoryList = require('./category.json')
 const db = require('../../config/mongoose')
 
 db.once('open', () => {
-  for (let i = 0; i < categoryList.results.length; i++) {
+  const length = categoryList.results.length
+  return Promise.all(Array.from({ length }, (_, i) => {
     const result = categoryList.results[i]
-    Category.create(result)
-  }
-
-  console.log('done!')
+    return Category.create(result)
+  }))
+    .then(() => {
+      console.log('done')
+      process.exit()
+    })
 })
