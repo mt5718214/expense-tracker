@@ -20,6 +20,13 @@
   margin: 0 0 0 10px;
 }
 
+.list-group-item .merchant {
+  line-height: 52px;
+  font-size: 19px;
+  font-weight: 700;
+  color: cornflowerblue;
+}
+
 .list-group-item .amount {
   line-height: 52px;
   font-size: 19px;
