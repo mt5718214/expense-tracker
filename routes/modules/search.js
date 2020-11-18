@@ -10,17 +10,17 @@ router.get('/', (req, res) => {
   const month = req.query.month
   const today = new Date()
   const year = today.getFullYear()
-  const filterDate = { userId }
+  const filter = { userId }
 
   if (category) {
-    filterDate.category = category
+    filter.category = category
   }
 
   if (month) {
-    filterDate.date = { $gte: `${year}-${month}-1`, $lte: `${year}-${month}-31` }
+    filter.date = { $gte: `${year}-${month}-1`, $lte: `${year}-${month}-31` }
   }
 
-  Record.find(filterDate)
+  Record.find(filter)
     .lean()
     .then(records => {
       let totalAmount = 0
