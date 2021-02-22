@@ -4,7 +4,8 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 const { generateMonth } = require('../../config/monthData')
 
-router.get('/', (req, res) => {
+//類別與月份篩選器(filter)
+router.get('/', async (req, res) => {
   const userId = req.user._id
   const category = req.query.category
   const month = req.query.month
@@ -20,27 +21,23 @@ router.get('/', (req, res) => {
     filter.date = { $gte: `${year}-${month}-1`, $lte: `${year}-${month}-31` }
   }
 
-  Record.find(filter)
-    .lean()
-    .sort({ date: 'desc' })
-    .then(records => {
-      let totalAmount = 0
-      records.forEach(record => {
-        totalAmount += record.amount
-        record.date = record.date.toISOString().slice(0, 10)
-      })
+  try {
+    const records = await Record.find(filter).lean().sort({ date: 'desc' })
+    const categories = await Category.find().lean()
+    const months = generateMonth()
+    const categoryArray = []
+    let totalAmount = 0
 
-      Category.find()
-        .lean()
-        .then(categories => {
-          const months = generateMonth()
-          const categoryArray = []
-          categories.forEach(category => categoryArray.push(category.name))
-          return res.render('index', { records, totalAmount, categoryArray, months, category, month })
-        })
-        .catch(error => console.log(error))
+    records.forEach(record => {
+      totalAmount += record.amount
+      record.date = record.date.toISOString().slice(0, 10)
     })
+    categories.forEach(category => categoryArray.push(category.name))
 
+    return res.render('index', { records, totalAmount, categoryArray, months, category, month })
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 module.exports = router
