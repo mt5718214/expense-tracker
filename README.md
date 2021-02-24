@@ -4,7 +4,7 @@
 ## 功能
 
 - 使用者需註冊帳號才可使用本網站所提供之功能
-- 使用者可透過email或facebook註冊帳號
+- 使用者可透過email、facebook、google註冊帳號
 - 使用者可查看所有支出
 - 使用者可以依照支出類別或月份篩選特定資料
 - 使用者可新增、刪除和修改任一筆支出
@@ -21,6 +21,8 @@
 - method-override
 - handlebars-helpers
 - passport
+- passport-facebook
+- passport-google-oauth2
 - express-session
 - connect-flash
 
