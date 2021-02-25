@@ -2,20 +2,32 @@
   <h2>總金額: {{totalAmount}}</h2>
 </div>
 
-<form action="/search" class="text-left mb-4">
-  <select name="category" class="btn btn-secondary">
-    <option value="">請選擇類別</option>
-    {{#each categoryArray}}
-    <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
+<form action="/search" class="row mx-0 mb-3">
+  <div class="col-12 col-md-6">
+    <div class="card-body">
+      <select name="category" class="btn btn-secondary">
+        <option value="">請選擇類別</option>
+        {{#each categoryArray}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
 
-  <select name="month" class="btn btn-secondary">
-    <option value="">請選擇月份</option>
-    {{#each months}}
-    <option value="{{this.id}}">{{this.name}}</option>
-    {{/each}}
-  </select>
+  <div class="col-12 col-md-6">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">起始日期</span>
+      </div>
+      <input type="date" class="form-control" name="startDate" id="startDate" value="{{startDate}}">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">截止日期</span>
+      </div>
+      <input type="date" class="form-control" name="endDate" id="endDate" value="{{endDate}}">
+    </div>
+  </div>
 
   <button type="submit" class="btn btn-dark">篩選</button>
 </form>

@@ -4,27 +4,20 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 const { generateMonth } = require('../../config/monthData')
 
-//類別與月份篩選器(filter)
+//類別與日期篩選器(filter)
 router.get('/', async (req, res) => {
   const userId = req.user._id
   const category = req.query.category
-  const month = req.query.month
-  const today = new Date()
-  const year = today.getFullYear()
-  const filter = { userId }
-
+  const startDate = req.query.startDate
+  const endDate = req.query.endDate
+  const filter = { userId, date: { $gte: `${startDate}`, $lte: `${endDate}` } }
   if (category) {
     filter.category = category
-  }
-
-  if (month) {
-    filter.date = { $gte: `${year}-${month}-1`, $lte: `${year}-${month}-31` }
   }
 
   try {
     const records = await Record.find(filter).lean().sort({ date: 'desc' })
     const categories = await Category.find().lean()
-    const months = generateMonth()
     const categoryArray = []
     let totalAmount = 0
 
@@ -34,7 +27,7 @@ router.get('/', async (req, res) => {
     })
     categories.forEach(category => categoryArray.push(category.name))
 
-    return res.render('index', { records, totalAmount, categoryArray, months, category, month })
+    return res.render('index', { records, totalAmount, categoryArray, category, startDate, endDate })
   } catch (error) {
     console.log(error)
   }
