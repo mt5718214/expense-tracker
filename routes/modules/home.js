@@ -13,16 +13,13 @@ router.get('/', async (req, res) => {
   try {
     const records = await Record.find({ userId }).lean().sort({ date: 'desc' })
     const categories = await Category.find().lean()
-    const categoryArray = []
     let totalAmount = 0
-
     records.forEach(record => {
       totalAmount += record.amount
       record.date = record.date.toISOString().slice(0, 10)
     })
-    categories.forEach(category => categoryArray.push(category.name))
 
-    return res.render('index', { records, totalAmount, categoryArray, startDate, endDate })
+    return res.render('index', { records, totalAmount, categories, startDate, endDate })
   } catch (error) {
     console.log(error)
   }
