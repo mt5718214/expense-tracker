@@ -6,7 +6,7 @@
   <!-- filter by categories -->
   <div class="card col-12 col-md-6 p-0">
     <div class="card-header bg-secondary text-light">
-      類別
+      篩選類別
     </div>
     <div class="row card-body m-0">
       {{#each categories}}
@@ -20,7 +20,10 @@
   </div>
 
   <!-- filter by a range of Date -->
-  <div class="col-12 col-md-6">
+  <div class="card col-12 col-md p-0">
+    <div class="card-header bg-secondary text-light">
+      篩選日期
+    </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">起始日期</span>
@@ -35,7 +38,22 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-dark">篩選</button>
+  <!-- search bar -->
+  <div class="col-md-6 my-1 p-0">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text bg-secondary text-light" id="search-bar">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+      <input type="text" name="keyword" class="form-control" placeholder="請輸入名稱" value="{{keyword}}"
+        aria-label="keyword" aria-describedby="search-bar">
+    </div>
+  </div>
+
+  <div class="col-md my-1">
+    <button type="submit" class="btn btn-dark">篩選</button>
+  </div>
 </form>
 
 <!-- record panel -->
