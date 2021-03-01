@@ -7,7 +7,7 @@ const { generateMonth } = require('../../config/monthData')
 //類別與日期篩選器(filter)
 router.get('/', async (req, res) => {
   const userId = req.user._id
-  const { queryCategory, startDate, endDate, keyword } = req.query
+  const { queryCategory, startDate, endDate, keyword, sort } = req.query
   const filter = { userId, date: { $gte: `${startDate}`, $lte: `${endDate}` } }
   if (queryCategory) {
     filter.category = queryCategory
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
   try {
     const categories = await Category.find().lean()
-    let records = await Record.find(filter).lean().sort({ date: 'desc' })
+    let records = await Record.find(filter).lean().sort(JSON.parse(sort))
 
     //計算總金額與將date格式轉換為字串
     let totalAmount = 0

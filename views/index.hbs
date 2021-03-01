@@ -51,6 +51,24 @@
     </div>
   </div>
 
+  <!-- sort section -->
+  <div class="col-md-3 col-lg-6 my-1">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text bg-secondary text-light" for="sort">
+          <i class="fas fa-sort-amount-down"></i>
+        </label>
+      </div>
+      <select class="custom-select" name="sort" id="sort">
+        <option value="{}" selected>排序方式</option>
+        <option value='{ "amount": "asc" }'>金額遞增</option>
+        <option value='{ "amount": "desc" }'>金額遞減</option>
+        <option value='{ "date": "asc" }'>日期從舊至新</option>
+        <option value='{ "date": "desc" }'>日期從新至舊</option>
+      </select>
+    </div>
+  </div>
+
   <div class="col-md my-1">
     <button type="submit" class="btn btn-dark">篩選</button>
   </div>
